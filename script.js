@@ -1,22 +1,15 @@
 //your code here
-//your code here
-let priceList=document.querySelectorAll(".price")
-let table = document.querySelector("table");
-function func(){
-	let sum=0;
-	priceList.forEach((e)=>{
-		sum += +e.innerText
-	})
-	let tr= document.createElement("tr");
-    let td1=document.createElement("td");
-    td1.innerText="Total";
-	let td2=document.createElement("td");
-    td2.innerText=sum;
-	//td2.data-ns-test="grandTotal"
-	tr.appendChild(td1);
-	tr.appendChild(td2);
-	table.appendChild(tr);
+const table = document.querySelector('table');
+ const lastRow = document.createElement('tr');
+ const prices = document.querySelectorAll('[data-ns-test=price]');
+ let sum = 0;
+ for(let i = 0; i < prices.length; i++) {
+  sum += parseInt(prices[i].textContent);
+ }
+ const child = document.createElement("td");
+ child.setAttribute('data-ns-test', 'grandTotal');
 
-}
 
-func()
+ child.textContent = sum;
+ lastRow.appendChild(child);
+ table.appendChild(lastRow);
